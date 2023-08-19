@@ -1,0 +1,23 @@
+{
+  "name": "wsrpg",
+  "version": "1.0.0",
+  "description": "",
+  "scripts": {
+    "start": "tsx src/server/server.ts",
+    "dev": "tsx watch ./server.ts",
+    "build": "tsup src"
+  },
+  "keywords": [],
+  "author": "Breno Almeida",
+  "license": "ISC",
+  "devDependencies": {
+    "tsup": "^7.2.0",
+    "tsx": "^3.12.7",
+    "typescript": "^5.1.6"
+  },
+  "dependencies": {
+    "@types/node": "^20.5.1",
+    "@types/ws": "^8.5.5",
+    "ws": "^8.13.0"
+  }
+}

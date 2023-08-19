@@ -1,0 +1,22 @@
+{
+  "name": "client",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "tsx watch ./client.ts"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "tsx": "^3.12.7",
+    "ws": "^8.13.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20.5.1",
+    "@types/ws": "^8.5.5",
+    "typescript": "^5.1.6"
+  }
+}
