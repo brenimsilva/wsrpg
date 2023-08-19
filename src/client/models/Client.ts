@@ -31,7 +31,7 @@ export default class Client extends WebSocket{
             this._id = json.id;
             console.log("ID atribuido com sucesso");
         } catch{ 
-            
+
         }
     }
     
