@@ -8,19 +8,19 @@ export default class Sprite {
          public height: number, public width: number,
          ) {}
 
-    draw() {
-        ctx.fillStyle = "green";
+    private draw(color: string) {
+        ctx.fillStyle = color;
         ctx.fillRect(this.position.x, this.position.y, this.width, this.height);
     }
 
-    update() {
-        this.draw()
+    update(color: string) {
+        this.draw(color)
         this.position.y += this.velocity.y;
         this.position.x += this.velocity.x;
         if(this.position.x + this.width + this.velocity.x >= canvas.width) {
             this.velocity.x = 0;
         }
-        if(this.position.y + this.height >= canvas.height) {
+        if(this.position.y + this.height >= canvas.height || this.position.y - this.height <= canvas.height) {
             this.velocity.y = 0;
         }
     }

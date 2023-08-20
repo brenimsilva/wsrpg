@@ -2,12 +2,17 @@ import { TClient } from "./client/models/Client"
 import Player from "./client/models/Player"
 
 type IMessage = {
-    msgType: "CON" | "ACT",
+    msgType: "CON" | "ACT" | "BUNDLE" | "DESCON",
     message: string
 }
 
 type ConMessage = {
     msgType: "CON",
+    message: TClient
+}
+
+type DesConMessage = {
+    msgType: "DESCON",
     message: TClient
 }
 
@@ -27,6 +32,6 @@ type Stats = {
     health_points: number;
 }
 
-export type {IMessage, Attributes, Stats, ConMessage}
+export type {IMessage, Attributes, Stats, ConMessage, DesConMessage}
 
 

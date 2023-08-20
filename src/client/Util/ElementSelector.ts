@@ -10,6 +10,7 @@ export default class ElementSelector {
     }
 
     public _<T>(selector: string): T {
+
         return document.querySelector(selector) as T
     }
 }
