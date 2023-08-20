@@ -8,8 +8,9 @@ import Sprite, { xy } from "../client/models/Sprite";
 import { ctx, canvas } from "../client/models/Canvas";
 export type bundleMessage = {
     msgType: "BUNDLE",
-    message: Array<{client: TClient, socket: WebSocket}>
+    message: Array<TClient>
 }
+
 
 export type ClientSocket = {
 client: TClient, socket: WebSocket
@@ -31,7 +32,7 @@ export default class RpgServer {
                 // ev.toString();
                 console.log("Closed connection")
                 this._clientList = this._clientList.filter(c => c.socket !== socket);
-                this._broadCast<bundleMessage>({msgType: "BUNDLE", message: this._clientList});
+                this._broadCast<bundleMessage>({msgType: "BUNDLE", message: this._clientList.map(c => c.client)});
             })
         });
         
@@ -43,11 +44,13 @@ export default class RpgServer {
             case "CON":
                 let client = json.message as unknown as TClient;
                 client.id = v4();
+                const conMessage = JSON.stringify({msgType: "CON", message: {client: client}}); 
+                socket.send(conMessage);
                 
-                client.player.id = v4();
                 this._clientList.push({client: client, socket});
-                // socket.send(JSON.stringify(client));
-                const bundle: bundleMessage = {msgType: "BUNDLE", message: this._clientList}
+                
+                // console.log(client)
+                const bundle: bundleMessage = {msgType: "BUNDLE", message: this._clientList.map(c => c.client)}
                 this._broadCast<bundleMessage>(bundle);
                 break;
             case "DESCON":

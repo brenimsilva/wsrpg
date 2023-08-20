@@ -32,17 +32,20 @@ export default class Client extends WebSocket{
             const msgJson: IMessage = JSON.parse(msg.data);
             switch(msgJson.msgType) {
                 case "BUNDLE": {
-                    const msgConverted: ClientSocket[] = msgJson.message as unknown as Array<ClientSocket>
-                    const players: Array<Player> = msgConverted.map(e => {
-                        return  new Player(e.client.player.stats, e.client.player.attributes, e.client.player.skill_points, e.client.player.sprite, e.client.player.id);
+                    const msgConverted: TClient[] = msgJson.message as unknown as TClient[]
+                    const players: Array<Player> = msgConverted.map(c => {
+                        const fillColor = c.id === this._id ? "blue" : "green"
+                        return  new Player(c.player.stats, c.player.attributes, c.player.skill_points, c.player.sprite, fillColor);
                     })
+                    
                     console.log(players)
                     start(players, this._player);
                     break;
                 }
                 case "CON": {
-                    const json: TClient = JSON.parse(msg.data);
+                    const json: TClient = JSON.parse(msg.data).message.client;
                     this._id = json.id;
+                    console.log(this._id)
                     console.log("ID atribuido com sucesso");
                     break;
                 }

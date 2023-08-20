@@ -5,16 +5,16 @@ export type xy = {
 import {canvas, ctx} from "./Canvas.js";
 export default class Sprite {
     constructor(public position: xy, public velocity: xy,
-         public height: number, public width: number,
+         public height: number, public width: number, public fillStyle: string
          ) {}
 
-    private draw(color: string) {
-        ctx.fillStyle = color;
+    private draw() {
+        ctx.fillStyle = this.fillStyle
         ctx.fillRect(this.position.x, this.position.y, this.width, this.height);
     }
 
-    update(color: string) {
-        this.draw(color)
+    update() {
+        this.draw()
         this.position.y += this.velocity.y;
         this.position.x += this.velocity.x;
         if(this.position.x + this.width + this.velocity.x >= canvas.width) {
