@@ -2,11 +2,16 @@ export type xy = {
     x: number;
     y: number;
 }
-import {canvas, ctx} from "./Canvas.js";
+// import {canvas, ctx} from "./Canvas.js";
 export default class Sprite {
-    constructor(public position: xy, public velocity: xy,
-         public height: number, public width: number, public fillStyle: string
-         ) {}
+    public velocity: xy
+    public fillStyle: string;
+    constructor(public position: xy,
+         public height: number, public width: number,
+         ) {
+            this.velocity = {x: 0, y: 0};
+            this.fillStyle = "green";
+         }
 
     private draw() {
         ctx.fillStyle = this.fillStyle
